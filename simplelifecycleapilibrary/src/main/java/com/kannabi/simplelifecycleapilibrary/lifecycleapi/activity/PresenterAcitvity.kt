@@ -1,9 +1,13 @@
 package com.kannabi.simplelifecycleapilibrary.lifecycleapi.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import com.awsm_guys.mobileclicker.lifecycleapi.Presenter
-import com.awsm_guys.mobileclicker.lifecycleapi.ProvidePresenter
+import com.kannabi.simplelifecycleapilibrary.lifecycleapi.Presenter
+import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ProvidePresenter
+
+/**
+ * An abstract class which incapsulate a work with the presenter
+ * and provide it by the {@link #getPresenter} method.
+ * */
 
 abstract class PresenterActivity<in V, out M: ProvidePresenter<P>, P: Presenter<V>>: ComponentStoreActivity<M>(){
 

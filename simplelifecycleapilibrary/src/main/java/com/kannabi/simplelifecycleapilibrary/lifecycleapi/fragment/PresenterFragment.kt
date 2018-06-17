@@ -1,8 +1,13 @@
 package com.kannabi.simplelifecycleapilibrary.lifecycleapi.fragment
 
 import android.os.Bundle
-import com.awsm_guys.mobileclicker.lifecycleapi.Presenter
-import com.awsm_guys.mobileclicker.lifecycleapi.ProvidePresenter
+import com.kannabi.simplelifecycleapilibrary.lifecycleapi.Presenter
+import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ProvidePresenter
+
+/**
+ * An abstract class which incapsulate a work with the presenter
+ * and provide it by the {@link #getPresenter} method.
+ * */
 
 abstract class PresenterFragment<in V, out M: ProvidePresenter<P>, P: Presenter<V>>:
                                                         ComponentStoreFragment<M>() {

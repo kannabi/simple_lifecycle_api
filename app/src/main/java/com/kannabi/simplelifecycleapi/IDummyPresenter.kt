@@ -1,6 +1,6 @@
 package com.kannabi.simplelifecycleapi
 
-import com.awsm_guys.mobileclicker.lifecycleapi.Presenter
+import com.kannabi.simplelifecycleapilibrary.lifecycleapi.Presenter
 
 interface IDummyPresenter: Presenter<IDummyView> {
 }

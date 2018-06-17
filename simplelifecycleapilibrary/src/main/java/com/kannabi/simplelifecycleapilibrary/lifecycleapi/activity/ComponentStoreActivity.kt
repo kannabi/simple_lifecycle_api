@@ -6,6 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ComponentStore
 import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ComponentStoreProvider
 
+/**
+ * An abstract class that incapsulate work with the components store
+ *
+ * */
+
+
 abstract class ComponentStoreActivity<out M: Any>: AppCompatActivity(), ComponentStoreProvider {
     private val COMPONENT_ID_KEY = "COMPONENT_ID_KEY"
 

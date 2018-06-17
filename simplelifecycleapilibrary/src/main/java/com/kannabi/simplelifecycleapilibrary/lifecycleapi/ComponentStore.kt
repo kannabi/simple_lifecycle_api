@@ -3,6 +3,10 @@ package com.kannabi.simplelifecycleapilibrary.lifecycleapi
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
+/**
+ * A implementation of {@link ComponentStoreProvider}
+ * */
+
 class ComponentStore: ComponentStoreProvider {
 
     private val componentMap: ConcurrentHashMap<Long, Any> = ConcurrentHashMap()

@@ -4,6 +4,11 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ComponentStoreProvider
 
+/**
+ * An abstract class that incapsulate work with the components store
+ *
+ * */
+
 abstract class ComponentStoreFragment<out M: Any>: Fragment() {
     private val COMPONENT_ID_KEY = "COMPONENT_ID_KEY"
     private lateinit var component: M

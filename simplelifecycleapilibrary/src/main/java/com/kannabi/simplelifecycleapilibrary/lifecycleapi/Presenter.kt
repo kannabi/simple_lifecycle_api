@@ -1,8 +1,9 @@
-package com.awsm_guys.mobileclicker.lifecycleapi
+package com.kannabi.simplelifecycleapilibrary.lifecycleapi
 
 /**
- * Created by hekpo on 04.02.2018.
- */
+ * A interface of a really base presenter
+ *
+ * */
 interface Presenter<in V> {
     fun attachView(view: V)
 

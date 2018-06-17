@@ -1,6 +1,6 @@
 package com.kannabi.simplelifecycleapi.di
 
-import com.awsm_guys.mobileclicker.lifecycleapi.ProvidePresenter
+import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ProvidePresenter
 import com.kannabi.simplelifecycleapi.DummyFragment
 import com.kannabi.simplelifecycleapi.IDummyPresenter
 import com.kannabi.simplelifecycleapi.di.scopes.MainScope
