@@ -9,7 +9,7 @@ import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ComponentStoreProvider
  *
  * */
 
-abstract class ComponentStoreFragment<out M: Any>: Fragment() {
+abstract class ComponentHolderFragment<out M: Any>: Fragment() {
     private val COMPONENT_ID_KEY = "COMPONENT_ID_KEY"
     private lateinit var component: M
     private var componentId: Long = -1

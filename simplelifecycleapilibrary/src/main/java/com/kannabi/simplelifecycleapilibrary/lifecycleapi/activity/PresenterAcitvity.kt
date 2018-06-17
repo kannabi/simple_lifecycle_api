@@ -9,7 +9,7 @@ import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ProvidePresenter
  * and provide it by the {@link #getPresenter} method.
  * */
 
-abstract class PresenterActivity<in V, out M: ProvidePresenter<P>, P: Presenter<V>>: ComponentStoreActivity<M>(){
+abstract class PresenterActivity<in V, out M: ProvidePresenter<P>, P: Presenter<V>>: ComponentHolderActivity<M>(){
 
     private lateinit var mPresenter: P
 

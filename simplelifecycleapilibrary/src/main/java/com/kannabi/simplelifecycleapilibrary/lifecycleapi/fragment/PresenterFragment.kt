@@ -10,7 +10,7 @@ import com.kannabi.simplelifecycleapilibrary.lifecycleapi.ProvidePresenter
  * */
 
 abstract class PresenterFragment<in V, out M: ProvidePresenter<P>, P: Presenter<V>>:
-                                                        ComponentStoreFragment<M>() {
+                                                        ComponentHolderFragment<M>() {
     private lateinit var mPresenter: P
 
     override fun onCreate(savedInstanceState: Bundle?) {
