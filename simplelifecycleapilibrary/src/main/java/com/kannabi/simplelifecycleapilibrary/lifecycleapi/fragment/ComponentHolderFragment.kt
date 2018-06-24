@@ -20,7 +20,8 @@ abstract class ComponentHolderFragment<out M: Any>: Fragment() {
         try {
             componentStore = (activity as ComponentStoreProvider)
             component = componentStore.getComponent(
-                    savedInstanceState?.getLong(COMPONENT_ID_KEY) ?:
+                    savedInstanceState?.getLong(COMPONENT_ID_KEY)
+                            ?.also(::componentId::set) ?:
                     componentStore.storeComponent(provideComponent())
                             .also(::componentId::set)
             ) as M

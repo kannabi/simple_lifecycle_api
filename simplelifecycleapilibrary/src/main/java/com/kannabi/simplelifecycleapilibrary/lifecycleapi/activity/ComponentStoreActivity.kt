@@ -16,14 +16,16 @@ abstract class ComponentStoreActivity: AppCompatActivity(), ComponentStoreProvid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        componentStore = lastNonConfigurationInstance as ComponentStore? ?: ComponentStore()
+        componentStore = lastCustomNonConfigurationInstance as? ComponentStore ?: ComponentStore()
     }
 
     override fun onRetainCustomNonConfigurationInstance() = componentStore
 
     override fun onDestroy() {
         super.onDestroy()
-        componentStore.flushComponents()
+        if (isFinishing){
+            componentStore.flushComponents()
+        }
     }
 
     override fun storeComponent(component: Any) = componentStore.storeComponent(component)

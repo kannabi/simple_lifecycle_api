@@ -7,13 +7,13 @@ abstract class ComponentHolderActivity<out M: Any>: ComponentStoreActivity() {
     private val COMPONENT_ID_KEY = "COMPONENT_ID_KEY"
     private lateinit var component: M
     private var componentId: Long = -1
-    private lateinit var componentStore: ComponentStoreProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
             component = getComponent(
-                    savedInstanceState?.getLong(COMPONENT_ID_KEY) ?:
+                    savedInstanceState?.getLong(COMPONENT_ID_KEY)
+                            ?.also(::componentId::set) ?:
                     storeComponent(provideComponent())
                             .also(::componentId::set)
             ) as M
@@ -29,8 +29,10 @@ abstract class ComponentHolderActivity<out M: Any>: ComponentStoreActivity() {
     }
 
     override fun onDestroy() {
+        if (isFinishing) {
+            releaseComponent(componentId)
+        }
         super.onDestroy()
-        componentStore.releaseComponent(componentId)
     }
 
     abstract fun provideComponent(): M
