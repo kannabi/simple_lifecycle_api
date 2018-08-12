@@ -15,8 +15,10 @@ abstract class ComponentHolderFragment<out M: Any>: Fragment() {
     private var componentId: Long = -1
     private lateinit var componentStore: ComponentStoreProvider
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private var configurationChanging = false
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         try {
             componentStore = (activity as ComponentStoreProvider)
             component = componentStore.getComponent(
@@ -34,11 +36,14 @@ abstract class ComponentHolderFragment<out M: Any>: Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putLong(COMPONENT_ID_KEY, componentId)
+        configurationChanging = true
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        componentStore.releaseComponent(componentId)
+        if (!configurationChanging) {
+            componentStore.releaseComponent(componentId)
+        }
     }
 
     abstract fun provideComponent(): M

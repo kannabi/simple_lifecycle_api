@@ -13,8 +13,8 @@ abstract class PresenterFragment<in V, out M: ProvidePresenter<P>, P: Presenter<
                                                         ComponentHolderFragment<M>() {
     private lateinit var mPresenter: P
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         mPresenter = getComponent().getPresenter()
     }
 
