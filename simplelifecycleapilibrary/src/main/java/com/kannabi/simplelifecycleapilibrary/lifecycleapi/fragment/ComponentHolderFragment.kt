@@ -15,7 +15,7 @@ abstract class ComponentHolderFragment<out M: Any>: Fragment() {
     private var componentId: Long = -1
     private lateinit var componentStore: ComponentStoreProvider
 
-    private var configurationChanging = false
+    protected var configurationChanging = false
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

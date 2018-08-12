@@ -35,7 +35,9 @@ abstract class PresenterFragment<in V, out M: ProvidePresenter<P>, P: Presenter<
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.onDestroy()
+        if (configurationChanging) {
+            mPresenter.onDestroy()
+        }
     }
 
     protected fun getPresenter() = mPresenter

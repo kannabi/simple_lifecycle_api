@@ -35,7 +35,9 @@ abstract class PresenterActivity<in V, out M: ProvidePresenter<P>, P: Presenter<
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.onDestroy()
+        if (isFinishing) {
+            mPresenter.onDestroy()
+        }
     }
 
     protected fun getPresenter() = mPresenter
