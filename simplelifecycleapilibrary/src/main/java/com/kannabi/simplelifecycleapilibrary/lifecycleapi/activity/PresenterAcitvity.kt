@@ -21,10 +21,6 @@ abstract class PresenterActivity<in V, out M: ProvidePresenter<P>, P: Presenter<
     override fun onStart() {
         super.onStart()
         getPresenter().attachView(this as V)
-    }
-
-    override fun onResume() {
-        super.onResume()
         getPresenter().onViewReady()
     }
 
