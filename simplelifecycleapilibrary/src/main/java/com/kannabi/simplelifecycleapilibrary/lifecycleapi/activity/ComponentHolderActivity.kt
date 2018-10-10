@@ -11,13 +11,14 @@ abstract class ComponentHolderActivity<out M: Any>: ComponentStoreActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
-            component = getComponent(
-                    savedInstanceState?.getLong(COMPONENT_ID_KEY)
-                            ?.also(::componentId::set) ?:
-                    storeComponent(provideComponent())
-                            .also(::componentId::set)
-            ) as M
-        } catch (e: ClassCastException){
+            component =
+                (savedInstanceState?.getLong(COMPONENT_ID_KEY)
+                    ?.let { getComponent(it.also(::componentId::set)) }
+                    ?: getComponent(
+                        storeComponent(provideComponent()).also(::componentId::set)
+                    )) as M
+        } catch (e: ClassCastException) {
+            e.printStackTrace()
             throw RuntimeException("${this::class.simpleName} " +
                     "should be inherit an activity that implements ${ComponentStoreProvider::class.simpleName}")
         }

@@ -20,14 +20,17 @@ abstract class ComponentHolderFragment<out M: Any>: Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         try {
-            componentStore = (activity as ComponentStoreProvider)
-            component = componentStore.getComponent(
-                    savedInstanceState?.getLong(COMPONENT_ID_KEY)
-                            ?.also(::componentId::set) ?:
-                    componentStore.storeComponent(provideComponent())
-                            .also(::componentId::set)
-            ) as M
+            component =
+                (activity as ComponentStoreProvider).let {
+                    (savedInstanceState?.getLong(COMPONENT_ID_KEY)
+                        ?.let { id -> it.getComponent(id.also(::componentId::set)) }
+                        ?: it.getComponent(
+                            it.storeComponent(provideComponent()).also(::componentId::set)
+                        )) as M
+                }
+
         } catch (e: ClassCastException){
+            e.printStackTrace()
             throw RuntimeException("${this::class.simpleName} " +
                     "should be used in activity that implements ${ComponentStoreProvider::class.simpleName}")
         }
