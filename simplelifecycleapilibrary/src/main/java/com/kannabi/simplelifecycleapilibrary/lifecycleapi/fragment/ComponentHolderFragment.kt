@@ -44,7 +44,7 @@ abstract class ComponentHolderFragment<out M: Any>: Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (!configurationChanging) {
+        if (!configurationChanging && ::componentStore.isInitialized) {
             componentStore.releaseComponent(componentId)
         }
     }

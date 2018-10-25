@@ -23,7 +23,7 @@ abstract class ComponentStoreActivity: AppCompatActivity(), ComponentStoreProvid
 
     override fun onDestroy() {
         super.onDestroy()
-        if (isFinishing){
+        if (isFinishing && ::componentStore.isInitialized) {
             componentStore.flushComponents()
         }
     }
@@ -32,7 +32,11 @@ abstract class ComponentStoreActivity: AppCompatActivity(), ComponentStoreProvid
 
     override fun getComponent(componentId: Long) = componentStore.getComponent(componentId)
 
-    override fun releaseComponent(componentId: Long) = componentStore.releaseComponent(componentId)
+    override fun releaseComponent(componentId: Long) {
+        if (::componentStore.isInitialized) {
+            componentStore.releaseComponent(componentId)
+        }
+    }
 
     override fun isStored(componentId: Long) = componentStore.isStored(componentId)
 }
